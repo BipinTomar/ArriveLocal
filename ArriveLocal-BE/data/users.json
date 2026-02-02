@@ -1,0 +1,135 @@
+[
+  {
+    "id": "u_1736636400000_x1a2b3c",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "$2b$10$1t7a2Dxg7CzG6v1Zp5pP8eY0z6nQm3k9gG2XqXK6tNn9r0s8bQy/S",
+    "mobile": "1234567890",
+    "role": "user",
+    "createdAt": "2025-09-11T09:00:00.000Z",
+    "updatedAt": "2025-09-11T09:00:00.000Z"
+  },
+  {
+    "id": "u_1736636405000_y4d5e6f",
+    "name": "Jane Smith",
+    "email": "jane@example.com",
+    "password": "$2b$10$r3G8ZlHk2sVv7z9QYtE3UuZ0bKd1k1JH3x4e2nS8hQp7d6fA1mCzS",
+    "mobile": "9876543210",
+    "role": "seller",
+    "createdAt": "2025-09-11T09:05:00.000Z",
+    "updatedAt": "2025-09-11T09:05:00.000Z"
+  },
+  {
+    "id": "u_1736636410000_z7g8h9i",
+    "name": "Alex Johnson",
+    "email": "alex@example.com",
+    "password": "$2b$10$kL9mN2pQ3rS4tU5vW6xY7zZ8aB9cD0eF1gH2iJ3kL4mN5oP6qR7S",
+    "mobile": "5556667777",
+    "role": "delivery_partner",
+    "createdAt": "2025-09-11T09:10:00.000Z",
+    "updatedAt": "2025-09-11T09:10:00.000Z"
+  },
+  {
+    "id": "u_1736636415000_a1b2c3d",
+    "name": "Admin User",
+    "email": "admin@example.com",
+    "password": "$2b$10$QwErTyUiOpAsDfGhJkLzXcVbNmQwErTyUiOpAsDfGhJkLzXcVbNm",
+    "mobile": "1112223333",
+    "role": "admin",
+    "createdAt": "2025-09-11T09:15:00.000Z",
+    "updatedAt": "2025-09-11T09:15:00.000Z"
+  },
+  {
+    "id": "1757614700717mhd006zyn",
+    "name": "John Doe",
+    "email": "johne@example.com",
+    "password": "$2b$06$OhuYGzTFsTyY5g3DQg7M/uwyCOY60XxguMeQYRkV3564M8yUqySkS",
+    "mobile": "1234567890",
+    "role": "user",
+    "createdAt": "2025-09-11T18:18:20.717Z",
+    "updatedAt": "2025-09-11T18:18:20.717Z"
+  },
+  {
+    "id": "1757615147912kjcgw9lkp",
+    "name": "John Doe",
+    "email": "johnee@example.com",
+    "password": "$2b$06$VCoOHJjpMX4QgwWQ3m2AqedJoXSQkYlQIakyAJgNnNYwCrkokbNqe",
+    "mobile": "1234567890",
+    "role": "user",
+    "createdAt": "2025-09-11T18:25:47.912Z",
+    "updatedAt": "2025-09-11T18:25:47.912Z"
+  },
+  {
+    "id": "1757867012141c6x68i35k",
+    "name": "John Doe",
+    "email": "johnet@example.com",
+    "password": "$2b$06$cZOf2MRYs41hz7w1JPkrIeny4F9tdCyZZofMu92XkxkvwtUY1r00.",
+    "mobile": "1234567890",
+    "role": "user",
+    "createdAt": "2025-09-14T16:23:32.141Z",
+    "updatedAt": "2025-09-14T16:23:32.141Z",
+    "refreshTokens": []
+  },
+  {
+    "id": "1757874675099oacuroa03",
+    "name": "John Doe",
+    "email": "johneet@example.com",
+    "password": "$2b$06$Ds40zL0ES20qpXxeIvV.kOUkI66YqXejTUin0yT1aiXGfWVmadYXi",
+    "mobile": "1234567890",
+    "role": "user",
+    "createdAt": "2025-09-14T18:31:15.099Z",
+    "updatedAt": "2025-09-14T18:31:15.099Z",
+    "refreshTokens": []
+  },
+  {
+    "id": "1758047568879zgh71oibg",
+    "name": "John Doe",
+    "email": "johneett@example.com",
+    "password": "$2b$06$td3AmpagHjk7UHV8XVJ3m.Y7SbP4UihufwoTnIksIMMeMtyaRe0SG",
+    "mobile": "1234567890",
+    "role": "user",
+    "createdAt": "2025-09-16T18:32:48.879Z",
+    "updatedAt": "2025-09-16T18:32:48.879Z",
+    "refreshTokens": [
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3NTgwNDc1Njg4Nzl6Z2g3MW9pYmciLCJlbWFpbCI6ImpvaG5lZXR0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzU4NDQyMDU3LCJleHAiOjE3NTg1Mjg0NTd9.aVZ-7Ogqe1401mBUg5YnFg-hHMRDeHXwT6j1dTXWcdw",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3NTgwNDc1Njg4Nzl6Z2g3MW9pYmciLCJlbWFpbCI6ImpvaG5lZXR0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzU5MTU4NzA1LCJleHAiOjE3NTkyNDUxMDV9.43DR958TgONNqjoPZy-ga2hGojyE8YR_X8howyA3bYw",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3NTgwNDc1Njg4Nzl6Z2g3MW9pYmciLCJlbWFpbCI6ImpvaG5lZXR0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzU5MzI1MDM3LCJleHAiOjE3NTk0MTE0Mzd9.8K2QbKT1080ZA6KZPf3xQrJYfmuMWuPt09e2OltDT_I",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3NTgwNDc1Njg4Nzl6Z2g3MW9pYmciLCJlbWFpbCI6ImpvaG5lZXR0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzU5NDEzNjQzLCJleHAiOjE3NTk1MDAwNDN9.NEL5ApwBLfOMsd2g9rzLVfIJbhg2eA043-rzEHqOhLI",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3NTgwNDc1Njg4Nzl6Z2g3MW9pYmciLCJlbWFpbCI6ImpvaG5lZXR0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzU5NzcxOTcwLCJleHAiOjE3NTk4NTgzNzB9.La8KDe47My57bzDBhogiCTuRP9VaWB4xa2xsFOjQVCM",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3NTgwNDc1Njg4Nzl6Z2g3MW9pYmciLCJlbWFpbCI6ImpvaG5lZXR0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzY5NjE5MDY1LCJleHAiOjE3Njk3MDU0NjV9.W38KkOffdn-ziDzphmqIjrSOR2bcYF_wC0SLIbRf68U"
+    ]
+  },
+  {
+    "id": "1758373625387rtlsqck52",
+    "name": "John Doe",
+    "email": "johneettt@example.com",
+    "password": "$2b$06$aBUb/wkBv1BPPZnkbWHE4eR8rtBQ25dg.R1fTcjvgqNn82imgnawS",
+    "mobile": "1234567890",
+    "role": "user",
+    "createdAt": "2025-09-20T13:07:05.387Z",
+    "updatedAt": "2025-09-20T13:07:05.387Z",
+    "refreshTokens": []
+  },
+  {
+    "id": "1758439734526r9hpz3lgj",
+    "name": "John Doe",
+    "email": "johndonelont@example.com",
+    "password": "$2b$06$oV3eZq2dhf2SmiCH/7UYCORGE5wTjwtLj5OGNmrnP1ZlVDr8kdhzm",
+    "mobile": "1234567890",
+    "role": "user",
+    "createdAt": "2025-09-21T07:28:54.526Z",
+    "updatedAt": "2025-09-21T07:28:54.526Z",
+    "refreshTokens": []
+  },
+  {
+    "id": "1758439743806ial5sg4av",
+    "name": "John Doe",
+    "email": "johndonelon@example.com",
+    "password": "$2b$06$tZ8P8Aj3U66fiPFNy6rlDeDBOlWUdrUYuzNc1CrW47vEEP4dAVium",
+    "mobile": "1234567890",
+    "role": "user",
+    "createdAt": "2025-09-21T07:29:03.806Z",
+    "updatedAt": "2025-09-21T07:29:03.806Z",
+    "refreshTokens": []
+  }
+]

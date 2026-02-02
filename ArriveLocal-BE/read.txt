@@ -1,0 +1,208 @@
+Collections & Schemas
+roles
+{
+  "_id": ObjectId,
+  "name": String,   // e.g., "user", "seller", "delivery_agent", "admin"
+  "permissions": [String] // optional: ["place_order", "manage_products", "deliver_orders"]
+}
+
+city
+{
+  "_id": ObjectId,
+  "name": String,
+  "pincode": String,
+  "zone": String,
+  "district": String
+}
+
+users
+{
+  "_id": ObjectId,
+  "name": String,
+  "email": String,
+  "mobile": String,
+  "referral_code": String,
+  "role_id": ObjectId,   // Ref -> roles._id
+  "addresses": [
+    {
+      "_id": ObjectId,
+      "address_line": String,
+      "lat_lng": String,
+      "type": String // home, work, etc.
+    }
+  ]
+}
+
+sellers
+{
+  "_id": ObjectId,
+  "name": String,
+  "business_name": String,
+  "contact_info": String,
+  "geo_location": String,
+  "operating_hours": String,
+  "is_active": Boolean,
+  "city_id": ObjectId,   // Ref -> city._id
+  "role_id": ObjectId    // Ref -> roles._id
+}
+
+warehouses
+{
+  "_id": ObjectId,
+  "seller_id": ObjectId,  // Ref -> sellers._id
+  "location": String
+}
+
+products
+{
+  "_id": ObjectId,
+  "name": String,
+  "description": String,
+  "price": Number,
+  "sku": String,
+  "unit": String,       // e.g., kg, piece
+  "category": String,
+  "tags": [ObjectId]    // Ref -> tags._id
+}
+
+product_warehouse_stock
+{
+  "_id": ObjectId,
+  "product_id": ObjectId,   // Ref -> products._id
+  "warehouse_id": ObjectId, // Ref -> warehouses._id
+  "stock": Number
+}
+
+tags
+{
+  "_id": ObjectId,
+  "name": String
+}
+
+cart
+{
+  "_id": ObjectId,
+  "user_id": ObjectId,     // Ref -> users._id
+  "items": [
+    {
+      "product_id": ObjectId, // Ref -> products._id
+      "seller_id": ObjectId,  // Ref -> sellers._id
+      "quantity": Number,
+      "added_at": Date
+    }
+  ]
+}
+
+orders
+{
+  "_id": ObjectId,
+  "user_id": ObjectId,     // Ref -> users._id
+  "seller_id": ObjectId,   // Ref -> sellers._id
+  "payment_id": ObjectId,  // Ref -> payments._id
+  "status": String,
+  "created_at": Date,
+  "total_amount": Number,
+  "delivery_charge": Number,
+  "discount": Number,
+  "tax": Number,
+  "feedback": String,
+  "products": [
+    {
+      "product_id": ObjectId,  // Ref -> products._id
+      "quantity": Number,
+      "price_at_order_time": Number
+    }
+  ]
+}
+
+payments
+{
+  "_id": ObjectId,
+  "order_id": ObjectId,  // Ref -> orders._id
+  "amount": Number,
+  "method": String,
+  "status": String,
+  "timestamp": Date,
+  "gateway_response": String
+}
+
+deliveries
+{
+  "_id": ObjectId,
+  "order_id": ObjectId,       // Ref -> orders._id
+  "agent_id": ObjectId,       // Ref -> delivery_agents._id
+  "status": String,
+  "eta": Date,
+  "actual_time": Date,
+  "delay_reason": String,
+  "delivery_notes": String,
+  "route_id": ObjectId        // Ref -> delivery_routes._id
+}
+
+delivery_agents
+{
+  "_id": ObjectId,
+  "name": String,
+  "contact": String,
+  "current_location": String,
+  "status": String,
+  "vehicle_type": String,
+  "license": String,
+  "agent_rating": Number,
+  "role_id": ObjectId   // Ref -> roles._id
+}
+
+delivery_routes
+{
+  "_id": ObjectId,
+  "delivery_id": ObjectId,  // Ref -> deliveries._id
+  "waypoints": [String],
+  "distance": Number,
+  "estimated_duration": String
+}
+
+delivery_zones
+{
+  "_id": ObjectId,
+  "seller_id": ObjectId,  // Ref -> sellers._id
+  "lat": Number,
+  "lng": Number,
+  "radius": Number
+}
+
+Relationships (README)
+
+User ↔ Role: Each user has one role (e.g., user, admin).
+
+Seller ↔ Role: Each seller has one role (e.g., seller).
+
+DeliveryAgent ↔ Role: Each delivery agent has one role (e.g., delivery_agent).
+
+City ↔ Seller: Each seller belongs to one city.
+
+Seller ↔ Warehouse: Each seller can have multiple warehouses.
+
+Warehouse ↔ Product: Many-to-many (via product_warehouse_stock).
+
+Product ↔ Tag: Many-to-many.
+
+User ↔ Cart: One user has one active cart.
+
+Order ↔ User: Each order belongs to one user.
+
+Order ↔ Seller: Each order is fulfilled by one seller.
+
+Order ↔ Payment: One-to-one.
+
+Order ↔ Delivery: One-to-one.
+
+Delivery ↔ DeliveryAgent: One delivery handled by one agent.
+
+Delivery ↔ Route: One-to-one.
+
+Seller ↔ DeliveryZone: One seller defines multiple zones.
+
+
+
+
+

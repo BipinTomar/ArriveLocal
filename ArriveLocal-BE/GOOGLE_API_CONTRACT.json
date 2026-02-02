@@ -1,0 +1,303 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "ArriveLocal Hyperlocal API",
+      "version": "1.0.0",
+      "description": "API contract for ArriveLocal Hyperlocal Inventory + Delivery System"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:5000/api",
+        "description": "Local Dev Server"
+      }
+    ],
+    "paths": {
+      "/auth/register": {
+        "post": {
+          "summary": "Register new user or seller",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "email": { "type": "string" },
+                    "password": { "type": "string" },
+                    "role": { "type": "string", "enum": ["user", "seller", "delivery_partner"] }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": { "description": "User registered successfully" }
+          }
+        }
+      },
+      "/auth/login": {
+        "post": {
+          "summary": "Login user/seller/delivery partner",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": { "type": "string" },
+                    "password": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": { "description": "Login successful with JWT token" }
+          }
+        }
+      },
+      "/users/nearby-sellers": {
+        "get": {
+          "summary": "Get sellers available within user radius",
+          "parameters": [
+            { "name": "lat", "in": "query", "required": true, "schema": { "type": "number" } },
+            { "name": "lng", "in": "query", "required": true, "schema": { "type": "number" } },
+            { "name": "radius", "in": "query", "required": false, "schema": { "type": "number", "default": 5000 } }
+          ],
+          "responses": {
+            "200": {
+              "description": "List of nearby sellers",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "sellers": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": { "type": "string" },
+                            "name": { "type": "string" },
+                            "business_name": { "type": "string" },
+                            "location": {
+                              "type": "object",
+                              "properties": {
+                                "lat": { "type": "number" },
+                                "lng": { "type": "number" }
+                              }
+                            },
+                            "distance_meters": { "type": "number" },
+                            "categories": {
+                              "type": "array",
+                              "items": { "type": "string" }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/sellers/{id}/inventory": {
+        "get": {
+          "summary": "Get seller’s live inventory within radius",
+          "parameters": [
+            { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } },
+            { "name": "lat", "in": "query", "schema": { "type": "number" } },
+            { "name": "lng", "in": "query", "schema": { "type": "number" } },
+            { "name": "radius", "in": "query", "schema": { "type": "number" } }
+          ],
+          "responses": {
+            "200": {
+              "description": "Seller inventory",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "seller_id": { "type": "string" },
+                      "inventory": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "product_id": { "type": "string" },
+                            "name": { "type": "string" },
+                            "price": { "type": "number" },
+                            "stock": { "type": "integer" },
+                            "unit": { "type": "string" },
+                            "category": { "type": "string" }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/products/nearby": {
+        "get": {
+          "summary": "Get products available in user radius",
+          "parameters": [
+            { "name": "lat", "in": "query", "required": true, "schema": { "type": "number" } },
+            { "name": "lng", "in": "query", "required": true, "schema": { "type": "number" } },
+            { "name": "radius", "in": "query", "required": false, "schema": { "type": "number", "default": 5000 } }
+          ],
+          "responses": {
+            "200": {
+              "description": "Nearby products list",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "products": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "product_id": { "type": "string" },
+                            "name": { "type": "string" },
+                            "price": { "type": "number" },
+                            "unit": { "type": "string" },
+                            "available_sellers": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "seller_id": { "type": "string" },
+                                  "name": { "type": "string" },
+                                  "distance_meters": { "type": "number" },
+                                  "stock": { "type": "integer" }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/orders": {
+        "post": {
+          "summary": "Place an order with location validation",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user_id": { "type": "string" },
+                    "lat": { "type": "number" },
+                    "lng": { "type": "number" },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "product_id": { "type": "string" },
+                          "quantity": { "type": "integer" }
+                        }
+                      }
+                    },
+                    "payment_method": { "type": "string", "enum": ["COD", "ONLINE"] }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Order placed successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "order_id": { "type": "string" },
+                      "status": { "type": "string" },
+                      "delivery_eta_minutes": { "type": "integer" },
+                      "delivery_partner": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string" },
+                          "name": { "type": "string" },
+                          "phone": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/delivery/nearby-orders": {
+        "get": {
+          "summary": "Get nearby orders for delivery partners",
+          "parameters": [
+            { "name": "lat", "in": "query", "schema": { "type": "number" } },
+            { "name": "lng", "in": "query", "schema": { "type": "number" } },
+            { "name": "radius", "in": "query", "schema": { "type": "number", "default": 7000 } }
+          ],
+          "responses": {
+            "200": {
+              "description": "List of nearby orders",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "orders": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "order_id": { "type": "string" },
+                            "pickup_location": {
+                              "type": "object",
+                              "properties": {
+                                "lat": { "type": "number" },
+                                "lng": { "type": "number" }
+                              }
+                            },
+                            "drop_location": {
+                              "type": "object",
+                              "properties": {
+                                "lat": { "type": "number" },
+                                "lng": { "type": "number" }
+                              }
+                            },
+                            "distance_to_pickup_meters": { "type": "number" },
+                            "status": { "type": "string" }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
