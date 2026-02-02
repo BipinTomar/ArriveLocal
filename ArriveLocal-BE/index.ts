@@ -57,7 +57,7 @@ app.use((err: any, req: any, res: any, next: any) => {
   });
 });
 
-// 404 handler (use pathless handler to avoid path-to-regexp wildcard issue)
+// 404 handler (use pathless handler to avoid path-to-regexp wildcard issue )
 app.use((req: any, res: any) => {
   res.status(404).json({ 
     error: 'Route not found',
